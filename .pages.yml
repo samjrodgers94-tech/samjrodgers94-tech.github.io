@@ -1,0 +1,91 @@
+media:
+  - name: images
+    label: Images
+    input: images
+    output: images
+    extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: photos
+    label: Photographs
+    type: file
+    path: content/photos.json
+    format: json
+    list: true
+    view:
+      fields: [file, name, set]
+      primary: name
+    fields:
+      - name: file
+        label: Photo
+        type: image
+        required: true
+        options:
+          media: images
+
+      - name: name
+        label: Plant name
+        type: string
+        required: true
+        description: Shown in italics under the photograph.
+
+      - name: place
+        label: Where
+        type: string
+        required: true
+
+      - name: set
+        label: Collection
+        type: string
+        required: true
+        description: >-
+          Existing collections: Battleston Hill, Woodland, Detail.
+          Type one of those exactly to add to it, or type a new name
+          to start a new collection (it gets its own tile and filter
+          button automatically).
+
+      - name: ratio
+        label: Shape
+        type: select
+        description: Only affects the placeholder shown before the photo is uploaded.
+        options:
+          values: ["4/5", "3/2", "2/3", "1/1"]
+        default: "4/5"
+
+  - name: site
+    label: Site text
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: headline
+        label: Headline (up to 3 short lines)
+        type: string
+        list:
+          max: 3
+
+      - name: heroNote
+        label: Hero note
+        type: text
+
+      - name: heroCorner
+        label: Hero corner label
+        type: string
+
+      - name: heroImage
+        label: Hero image path
+        type: string
+        description: e.g. images/hero.jpg — the filename of the wide photo behind the headline.
+
+      - name: aboutTitle
+        label: About heading
+        type: string
+
+      - name: aboutBody
+        label: About paragraphs
+        type: text
+        list: true
+
+      - name: instagram
+        label: Instagram URL
+        type: string

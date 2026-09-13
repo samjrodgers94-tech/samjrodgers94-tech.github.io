@@ -1,0 +1,16 @@
+[
+  { "file": "images/battleston-01.jpg", "name": "Rhododendron 'Cynthia'", "place": "Battleston Hill", "set": "Battleston Hill", "ratio": "4/5" },
+  { "file": "images/battleston-02.jpg", "name": "Magnolia campbellii", "place": "Battleston Hill", "set": "Battleston Hill", "ratio": "2/3" },
+  { "file": "images/battleston-03.jpg", "name": "Acer palmatum", "place": "Battleston Hill", "set": "Battleston Hill", "ratio": "3/2" },
+  { "file": "images/battleston-04.jpg", "name": "Camellia japonica", "place": "Battleston Hill", "set": "Battleston Hill", "ratio": "4/5" },
+
+  { "file": "images/woodland-01.jpg", "name": "Galanthus nivalis", "place": "Wisley", "set": "Woodland", "ratio": "3/2" },
+  { "file": "images/woodland-02.jpg", "name": "Helleborus × hybridus", "place": "Wisley", "set": "Woodland", "ratio": "4/5" },
+  { "file": "images/woodland-03.jpg", "name": "Anemone nemorosa", "place": "Wisley", "set": "Woodland", "ratio": "3/2" },
+  { "file": "images/woodland-04.jpg", "name": "Dryopteris affinis", "place": "Wisley", "set": "Woodland", "ratio": "2/3" },
+
+  { "file": "images/detail-01.jpg", "name": "Papaver somniferum", "place": "Trials field", "set": "Detail", "ratio": "4/5" },
+  { "file": "images/detail-02.jpg", "name": "Allium cristophii", "place": "Mixed border", "set": "Detail", "ratio": "4/5" },
+  { "file": "images/detail-03.jpg", "name": "Echeveria elegans", "place": "Glasshouse", "set": "Detail", "ratio": "3/2" },
+  { "file": "images/detail-04.jpg", "name": "Nepenthes sp.", "place": "Glasshouse", "set": "Detail", "ratio": "2/3" }
+]

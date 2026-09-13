@@ -1,0 +1,51 @@
+name: Resize images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "images/**"
+
+permissions:
+  contents: write
+
+jobs:
+  resize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
+      - name: Resize oversized images
+        run: |
+          set -euo pipefail
+
+          while IFS= read -r -d '' f; do
+            read -r w h <<< "$(identify -format '%w %h' "$f")"
+            long=$(( w > h ? w : h ))
+            if (( long > 2500 )); then
+              echo "Resizing $f (${w}x${h}, long edge ${long}px)"
+              mogrify -auto-orient -resize "2500x2500>" -colorspace sRGB -strip -quality 82 "$f"
+            else
+              echo "Skipping $f (${w}x${h}, already under 2500px)"
+            fi
+          done < <(find images -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0)
+
+      - name: Commit resized images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- images; then
+            echo "Nothing to resize."
+          else
+            git add images
+            git commit -m "Resize oversized images [skip ci]"
+            git push
+          fi
