@@ -25,13 +25,13 @@ Don't worry about file size — a GitHub Action automatically shrinks anything o
    (This opens `content/photos.json` — the list of every photo on the site — in the editor directly.)
 2. You'll see a list of entries like this:
    ```json
-   { "file": "images/battleston-01.jpg", "name": "Rhododendron 'Cynthia'", "place": "Battleston Hill", "set": "Battleston Hill", "ratio": "4/5" }
+   { "file": "images/autumn-01.jpg", "name": "Acer palmatum", "place": "RHS Wisley", "set": "Autumn Colour", "ratio": "2/3" }
    ```
 3. Copy one whole line (including the `{` and `}` and the comma after it), paste it as a new line anywhere in the list, and change the values:
    - `file` — `images/` followed by the exact filename you uploaded in step 1.
    - `name` — the plant name (shown in italics on the site).
    - `place` — where it was taken.
-   - `set` — the collection it belongs to. Use an existing one exactly as spelled elsewhere in the file (currently `Battleston Hill`, `Woodland`, `Detail`), or type a brand new name to start a new collection — it'll get its own tile and filter button automatically.
+   - `set` — the collection it belongs to. Use an existing one exactly as spelled elsewhere in the file (currently `Woodland`, `Autumn Colour`, `Detail`), or type a brand new name to start a new collection — it'll get its own tile and filter button automatically.
    - `ratio` — one of `"4/5"`, `"3/2"`, `"2/3"`, `"1/1"`. Only affects the placeholder box shown before the photo loads; safe to leave as-is.
 4. Make sure every entry except the last one ends with a comma, and the very last one doesn't.
 5. Scroll down, click **Commit changes**, then check the live site in a minute or two.
