@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photo index — reference for editing photos.json</title>
+<style>
+  body{margin:0;background:#0A0A0A;color:#F2F2F0;font-family:"Helvetica Neue",Arial,sans-serif;font-size:14px;line-height:1.5;padding:24px}
+  h1{font-weight:400;font-size:20px;margin:0 0 6px}
+  p.note{color:#9a9a96;max-width:70ch;margin:0 0 24px}
+  code{background:#1a1a1a;padding:2px 5px;border-radius:3px;font-size:12.5px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+  .card{background:#131313;border:1px solid rgba(242,242,240,.1);border-radius:6px;overflow:hidden}
+  .card img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#1a1a1a}
+  .card .body{padding:10px 12px}
+  .card .file{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#F2F2F0;word-break:break-all}
+  .card .meta{color:#9a9a96;font-size:12px;margin-top:4px}
+  .card .idx{color:#5E5E5B;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+  a.filelink{color:#8fd0ff}
+</style>
+</head>
+<body>
+<h1>Photo index</h1>
+<p class="note">
+  Not part of the live site — just a reference for editing <code>content/photos.json</code> on GitHub.
+  Each card shows what a photo looks like next to its exact <code>file</code> value, so you can find the
+  right line to edit or delete. Ctrl/Cmd+F for the filename shown under a photo once you're in the
+  <a class="filelink" href="https://github.com/samjrodgers94-tech/samjrodgers94-tech.github.io/edit/main/content/photos.json" target="_blank" rel="noopener">photos.json editor</a>.
+</p>
+<div class="grid" id="grid"></div>
+
+<script>
+fetch("content/photos.json")
+  .then(r => r.json())
+  .then(photos => {
+    const grid = document.getElementById("grid");
+    photos.forEach((p, i) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${p.file}" alt="" loading="lazy">
+        <div class="body">
+          <div class="idx">Entry ${i + 1} of ${photos.length}</div>
+          <div class="file">${p.file}</div>
+          <div class="meta">${p.name} — ${p.place} — ${p.set}</div>
+        </div>`;
+      grid.appendChild(card);
+    });
+  })
+  .catch(() => {
+    document.getElementById("grid").textContent = "Couldn't load content/photos.json — open this page over http:// (not by double-clicking the file) or check the live site instead.";
+  });
+</script>
+</body>
+</html>

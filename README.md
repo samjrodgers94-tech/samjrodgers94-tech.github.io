@@ -10,6 +10,8 @@ This is a static site — no CMS is connected. Photos and text are edited direct
 
 Two steps: upload the file, then add one entry describing it.
 
+Not sure which line in `photos.json` matches which photo? Open **[photo-index.html](https://samjrodgers94-tech.github.io/photo-index.html)** — it shows a thumbnail of every photo next to its exact filename, so you can find the right one before editing.
+
 ### 1. Upload the photo
 
 1. Go to: **https://github.com/samjrodgers94-tech/samjrodgers94-tech.github.io/upload/main/images**
