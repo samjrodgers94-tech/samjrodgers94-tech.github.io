@@ -17,108 +17,132 @@
 
 <style>
   :root{
-    --black:#0A0A0A;
-    --panel:#131313;
-    --white:#F2F2F0;
-    --grey:#8C8C88;
-    --line:rgba(242,242,240,.16);
+    --cream:#F2EFE8;
+    --ink:#1F1E1A;
+    --grey:#736F63;
+    --line:rgba(31,30,26,.14);
+    --forest:#333F2D;
+    --forest-line:rgba(242,239,232,.18);
+    --forest-text:#E7E4D8;
     --display:"Newsreader",Georgia,serif;
     --text:"Archivo","Helvetica Neue",Arial,sans-serif;
-    --bar:64px;
-    --gap:clamp(8px,1.2vw,16px);
+    --bar:72px;
+    --gap:clamp(18px,2.6vw,32px);
   }
 
   *,*::before,*::after{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
   body{
-    margin:0;background:var(--black);color:var(--white);
-    font-family:var(--text);font-weight:300;font-size:15px;line-height:1.65;
+    margin:0;background:var(--cream);color:var(--ink);
+    font-family:var(--text);font-weight:400;font-size:15px;line-height:1.65;
     -webkit-font-smoothing:antialiased;
   }
   img{display:block;max-width:100%}
   a{color:inherit;text-decoration:none}
-  :focus-visible{outline:1px solid var(--white);outline-offset:4px}
+  :focus-visible{outline:1px solid var(--ink);outline-offset:4px}
 
   .wrap{width:min(1320px,90vw);margin-inline:auto}
 
   .label{
-    font-size:10px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;
+    font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
     color:var(--grey);
   }
-  .rule{display:inline-block;width:42px;height:1px;background:var(--line);vertical-align:middle}
+  .rule{display:inline-block;width:38px;height:1px;background:var(--line);vertical-align:middle}
 
   /* ---------- top bar ---------- */
   .bar{
     position:fixed;top:0;left:0;right:0;z-index:60;height:var(--bar);
     display:flex;align-items:center;
-    background:var(--black);border-bottom:1px solid rgba(242,242,240,.08);
+    background:var(--cream);border-bottom:1px solid var(--line);
   }
   .bar .wrap{display:flex;align-items:center;justify-content:space-between;width:min(1320px,92vw)}
-  .mark{font-size:13px;letter-spacing:.24em;text-transform:uppercase;font-weight:400}
-  .bar nav{display:flex;gap:clamp(16px,2.6vw,34px)}
-  .bar nav a{font-size:12.5px;color:#CFCFCB}
-  .bar nav a:hover{color:var(--white)}
+  .mark{font-size:13px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .bar nav{display:flex;gap:clamp(18px,2.6vw,36px)}
+  .bar nav a{font-size:13px;color:var(--ink)}
+  .bar nav a:hover{color:var(--grey)}
+  .arrow{display:inline-block;margin-left:.2em;font-size:.85em}
 
   /* ---------- hero ---------- */
-  .hero{position:relative;height:100svh;min-height:560px;overflow:hidden;background:var(--panel)}
-  .hero>img{width:100%;height:100%;object-fit:cover}
-  .hero::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(105deg,rgba(10,10,10,.86) 0%,rgba(10,10,10,.55) 42%,rgba(10,10,10,.15) 78%);
+  .hero{padding-top:var(--bar);border-bottom:1px solid var(--line)}
+  .hero .wrap{width:100%;max-width:none;margin:0;display:grid;grid-template-columns:1fr}
+  @media(min-width:880px){
+    .hero .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:calc(100svh - var(--bar))}
   }
-  .hero-body{position:absolute;inset:var(--bar) 0 0;z-index:2;display:flex;align-items:center}
-  .hero-body .wrap{max-width:min(1320px,90vw)}
-  .eyebrow{margin:0 0 clamp(20px,3.5vh,34px)}
+
+  .hero-text{
+    display:flex;flex-direction:column;justify-content:space-between;gap:40px;
+    padding:clamp(40px,6vw,80px) clamp(24px,6vw,80px);
+  }
+  .eyebrow-row{display:flex;align-items:center;gap:14px}
   h1{
-    font-family:var(--display);font-weight:200;
-    font-size:clamp(2.9rem,6.4vw,5.1rem);line-height:1.04;letter-spacing:-.015em;
-    margin:0;
+    font-family:var(--display);font-weight:300;
+    font-size:clamp(3rem,6vw,4.6rem);line-height:1.05;letter-spacing:-.01em;
+    margin:22px 0 0;
   }
   h1 span{display:block}
-  .hero-note{
-    margin:clamp(22px,3.5vh,34px) 0 0;max-width:30ch;color:#C8C8C4;font-size:14px;line-height:1.75;
-    padding-top:22px;position:relative;
+  h1 span:nth-child(2){font-style:italic}
+  .hero-note{margin:24px 0 0;max-width:36ch;color:var(--grey);font-size:15px;line-height:1.75}
+  .hero-cta{
+    display:inline-flex;align-items:center;gap:.6em;margin-top:30px;
+    font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+    border-bottom:1px solid var(--line);padding-bottom:8px;width:fit-content;
   }
-  .hero-note::before{content:"";position:absolute;top:0;left:0;width:42px;height:1px;background:var(--line)}
-  .hero-foot{
-    position:absolute;left:0;right:0;bottom:clamp(20px,4vh,40px);z-index:3;
+  .hero-cta:hover{border-color:var(--ink)}
+  .hero-credit{margin:0;color:var(--grey)}
+
+  .hero-media{position:relative;overflow:hidden;background:#1a1a17;min-height:min(60svh,420px)}
+  @media(min-width:880px){.hero-media{min-height:0}}
+  .hero-media img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+  .hero-media::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(to top,rgba(0,0,0,.6),transparent)}
+  .hero-media .cap{position:absolute;right:22px;bottom:20px;z-index:2;color:#F2EFE8;font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
+
+  /* ---------- shared section chrome ---------- */
+  .section{padding:clamp(64px,10vh,120px) 0;border-top:1px solid var(--line)}
+  .section-head{display:flex;flex-wrap:wrap;gap:1.4em;align-items:baseline;justify-content:space-between;margin-bottom:clamp(28px,4.5vh,48px)}
+  .section-head h2{font-family:var(--display);font-weight:300;font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.1;margin:10px 0 0}
+  .section-head .note{color:var(--grey);max-width:40ch}
+
+  /* ---------- 01 intro ---------- */
+  .intro .wrap{display:grid;gap:20px;grid-template-columns:1fr}
+  @media(min-width:760px){.intro .wrap{grid-template-columns:minmax(0,.32fr) minmax(0,.68fr)}}
+  .intro-quote{
+    font-family:var(--display);font-weight:300;font-size:clamp(1.4rem,2.6vw,2.05rem);
+    line-height:1.4;margin:0;max-width:34ch;
   }
-  .hero-foot .wrap{display:flex;justify-content:space-between;align-items:center;gap:2em}
 
-  /* ---------- collection tiles ---------- */
-  .tiles{padding:clamp(10px,1.6vw,18px) 0 0}
-  .tiles .wrap{display:grid;gap:var(--gap);grid-template-columns:1fr}
-  @media(min-width:760px){.tiles .wrap{grid-template-columns:repeat(3,1fr)}}
-  .tile{display:block;cursor:pointer;border:0;padding:0;background:none;text-align:left;font:inherit;color:inherit;width:100%}
-  .tile figure{margin:0;position:relative;aspect-ratio:16/10;background:var(--panel);overflow:hidden}
-  .tile img{width:100%;height:100%;object-fit:cover;filter:brightness(.72);transition:filter .5s ease}
-  .tile:hover img,.tile:focus-visible img{filter:brightness(.95)}
-  .tile .label{display:block;padding:14px 2px 0;color:var(--white)}
-  .tile .count{color:var(--grey);letter-spacing:.22em}
+  /* ---------- 02 featured ---------- */
+  .featured-grid{display:grid;gap:var(--gap);grid-template-columns:1fr}
+  @media(min-width:760px){.featured-grid{grid-template-columns:repeat(3,1fr)}}
+  .featured-grid figure{margin:0}
+  .featured-grid img{width:100%;aspect-ratio:4/5;object-fit:cover;background:#1a1a17}
+  .featured-grid figcaption{padding-top:14px}
+  .featured-grid .sp{display:block;font-family:var(--display);font-size:19px;font-weight:300}
+  .featured-grid .pl{display:block;color:var(--grey);font-size:12.5px;margin-top:2px}
+  .featured-foot{display:flex;flex-wrap:wrap;gap:1em;justify-content:space-between;margin-top:clamp(28px,4.5vh,44px);padding-top:22px;border-top:1px solid var(--line);color:var(--grey);font-size:13px}
+  .featured-foot a:hover{color:var(--ink)}
 
-  /* ---------- gallery ---------- */
-  .gallery{padding:clamp(70px,11vh,130px) 0 0}
-  .gallery-head{display:flex;flex-wrap:wrap;gap:1.4em;align-items:baseline;justify-content:space-between;margin-bottom:clamp(22px,4vh,40px)}
-  .filters{display:flex;gap:.2em;flex-wrap:wrap;margin:0;padding:0}
+  /* ---------- 03 portfolio ---------- */
+  .filters{display:flex;gap:.3em;flex-wrap:wrap;margin:0 0 28px;padding:0}
   .filter{
     background:none;border:0;cursor:pointer;font:inherit;
-    font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);
-    padding:.6em .95em;
+    font-size:13px;color:var(--grey);padding:.5em .9em;border-radius:3px;
   }
-  .filter:hover{color:var(--white)}
-  .filter[aria-pressed="true"]{color:var(--black);background:var(--white)}
+  .filter .n{color:var(--grey);margin-left:.4em;font-size:.85em}
+  .filter:hover{color:var(--ink)}
+  .filter[aria-pressed="true"]{color:var(--cream);background:var(--forest)}
+  .filter[aria-pressed="true"] .n{color:var(--forest-text)}
 
   .grid{columns:1;column-gap:var(--gap)}
   @media(min-width:640px){.grid{columns:2}}
   @media(min-width:1060px){.grid{columns:3}}
 
-  figure.shot{break-inside:avoid;margin:0 0 var(--gap);background:var(--panel)}
+  figure.shot{break-inside:avoid;margin:0 0 clamp(36px,5vh,56px)}
   figure.shot.is-hidden{display:none}
   .shot button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;color:inherit}
-  .shot img{width:100%}
-  .shot figcaption{display:flex;justify-content:space-between;gap:1.5em;padding:12px 2px 0}
-  .shot .sp{font-family:var(--display);font-style:italic;font-size:14px;color:var(--white);letter-spacing:0;text-transform:none}
-  .shot .pl{white-space:nowrap}
+  .shot img{width:100%;background:#1a1a17}
+  .shot figcaption{padding-top:12px}
+  .shot .sp{display:block;font-family:var(--display);font-size:16px;font-weight:300;color:var(--ink)}
+  .shot .pl{display:block;color:var(--grey);font-size:12.5px;margin-top:2px}
 
   .shot.missing button{
     aspect-ratio:var(--ar,4/5);display:grid;place-content:center;gap:8px;
@@ -126,40 +150,57 @@
   }
   .shot.missing img{display:none}
   .ph-name{font-size:11px;color:var(--grey);word-break:break-all}
-  .ph-hint{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#5E5E5B}
+  .ph-hint{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#A8A499}
   .shot:not(.missing) .ph-name,.shot:not(.missing) .ph-hint{display:none}
 
-  /* ---------- about ---------- */
-  .about{padding:clamp(80px,14vh,160px) 0;margin-top:clamp(70px,11vh,130px);border-top:1px solid var(--line)}
-  .about .wrap{display:grid;gap:clamp(28px,5vw,80px)}
-  @media(min-width:880px){.about .wrap{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}}
-  .about h2{font-family:var(--display);font-weight:200;font-size:clamp(2rem,4.2vw,3.1rem);line-height:1.1;margin:0}
-  .about p{margin:0 0 1.3em;max-width:56ch;color:#C8C8C4;font-size:14.5px;line-height:1.8}
-  .about p:last-child{margin-bottom:0}
-  .ig{
-    display:inline-flex;align-items:center;gap:.8em;margin-top:.6em;
-    border-bottom:1px solid var(--line);padding-bottom:6px;
-  }
-  .ig:hover{border-color:var(--white)}
-  .ig .handle{font-family:var(--display);font-size:20px;font-weight:300}
-  .ig svg{width:17px;height:17px;flex:none}
+  /* ---------- 04 about ---------- */
+  .about{background:var(--forest);color:var(--forest-text);border-top:0}
+  .about .wrap{display:grid;gap:clamp(28px,5vw,70px);grid-template-columns:1fr}
+  @media(min-width:880px){.about .wrap{grid-template-columns:minmax(0,.8fr) minmax(0,1.3fr)}}
+  .about-photo{aspect-ratio:1/1;overflow:hidden;background:#22281d;align-self:start}
+  .about-photo img{width:100%;height:100%;object-fit:cover}
+  .about .label{color:#B9CBAE}
+  .about h2{font-family:var(--display);font-weight:300;font-size:clamp(2rem,4vw,2.9rem);line-height:1.12;margin:12px 0 28px}
+  .about h2 span{display:block}
+  .about h2 span:nth-child(2){font-style:italic}
+  .about p{margin:0 0 1.3em;max-width:56ch;color:var(--forest-text);font-size:14.5px;line-height:1.8}
+  .about p:last-of-type{margin-bottom:0}
+  .signature{font-family:var(--display);font-style:italic;font-size:24px;font-weight:300;margin:30px 0 0}
+  .about-rule{border:0;border-top:1px solid var(--forest-line);margin:18px 0}
+  .gear{color:#B9B6A9;font-size:13px}
 
-  footer{border-top:1px solid var(--line);padding:28px 0 44px}
-  footer .wrap{display:flex;flex-wrap:wrap;gap:1.5em;justify-content:space-between;align-items:center}
+  /* ---------- 05 footer ---------- */
+  .site-footer{padding-top:clamp(64px,10vh,120px)}
+  .footer-top{display:grid;gap:clamp(24px,5vw,60px);grid-template-columns:1fr}
+  @media(min-width:760px){.footer-top{grid-template-columns:1fr 1fr}}
+  .footer-top h2{font-family:var(--display);font-weight:300;font-size:clamp(2rem,4vw,2.9rem);line-height:1.12;margin:12px 0 0}
+  .footer-top h2 span{display:block}
+  .footer-top h2 span:nth-child(2){font-style:italic}
+  .footer-top p{max-width:44ch;color:var(--grey);margin:0 0 20px}
+  .ig{
+    display:inline-flex;align-items:center;gap:.6em;
+    border-bottom:1px solid var(--line);padding-bottom:6px;font-size:15px;
+  }
+  .ig:hover{border-color:var(--ink)}
+  .bottom-bar{
+    margin-top:clamp(50px,8vh,90px);padding:22px 0 32px;border-top:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:1.2em;justify-content:space-between;align-items:center;
+  }
 
   /* ---------- lightbox ---------- */
-  .lightbox{position:fixed;inset:0;z-index:100;display:none;background:rgba(6,6,6,.97);
+  .lightbox{position:fixed;inset:0;z-index:100;display:none;background:rgba(10,10,8,.97);
     padding:clamp(14px,3vw,44px);grid-template-rows:1fr auto;gap:18px}
   .lightbox.is-open{display:grid}
   .lightbox img{margin:auto;max-width:100%;max-height:100%;object-fit:contain}
   .lb-bar{display:flex;align-items:center;justify-content:space-between;gap:2em}
-  .lb-bar .sp{font-family:var(--display);font-style:italic;font-size:15px}
+  .lb-bar .sp{font-family:var(--display);font-style:italic;font-size:15px;color:#F2EFE8}
+  .lb-bar .pl{color:#A8A499;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
   .lb-nav{display:flex;gap:8px}
   .lb-nav button,.lb-close{
-    background:none;border:1px solid var(--line);color:var(--white);
+    background:none;border:1px solid rgba(242,239,232,.3);color:#F2EFE8;
     width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:16px;line-height:1;
   }
-  .lb-nav button:hover,.lb-close:hover{border-color:var(--white)}
+  .lb-nav button:hover,.lb-close:hover{border-color:#F2EFE8}
   .lb-close{position:absolute;top:clamp(14px,3vw,44px);right:clamp(14px,3vw,44px)}
 
   @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
@@ -171,67 +212,104 @@
   <div class="wrap">
     <a class="mark" href="#top">Sam Rodgers</a>
     <nav>
-      <a href="#work">Work</a>
+      <a href="#work">Portfolio</a>
       <a href="#about">About</a>
-      <a id="navIg" href="https://www.instagram.com/samjrodgers_" target="_blank" rel="me noopener">Instagram</a>
+      <a id="navIg" href="https://www.instagram.com/samjrodgers_" target="_blank" rel="me noopener">Instagram<span class="arrow">↗</span></a>
     </nav>
   </div>
 </div>
 
 <header class="hero" id="top">
-  <img id="heroImg" src="" alt="" onerror="this.style.display='none'">
-  <div class="hero-body">
-    <div class="wrap">
-      <p class="eyebrow label" id="eyebrow"></p>
-      <h1 id="headline"></h1>
-      <p class="hero-note" id="heroNote"></p>
+  <div class="wrap">
+    <div class="hero-text">
+      <div>
+        <div class="eyebrow-row"><span class="rule"></span><p class="label" id="heroEyebrow" style="margin:0"></p></div>
+        <h1 id="headline"></h1>
+        <p class="hero-note" id="heroNote"></p>
+        <a class="hero-cta" href="#work"><span id="heroCta"></span> <span aria-hidden="true">↓</span></a>
+      </div>
+      <p class="label hero-credit">Photographs by Sam Rodgers</p>
     </div>
-  </div>
-  <div class="hero-foot">
-    <div class="wrap">
-      <a class="label" href="#work">Scroll &nbsp;<span class="rule"></span></a>
-      <span class="label" id="heroCorner"></span>
+    <div class="hero-media">
+      <img id="heroImg" alt="" onerror="this.style.display='none'">
+      <span class="cap" id="heroCap"></span>
     </div>
   </div>
 </header>
 
 <main>
-  <section class="tiles" aria-label="Collections">
-    <div class="wrap" id="tiles"></div>
+  <section class="section intro">
+    <div class="wrap">
+      <p class="label" id="introLabel"></p>
+      <p class="intro-quote" id="introQuote"></p>
+    </div>
   </section>
 
-  <section class="gallery" id="work">
+  <section class="section featured">
     <div class="wrap">
-      <div class="gallery-head">
-        <p class="label" style="margin:0">Selected work</p>
-        <div class="filters" id="filters" role="group" aria-label="Filter by collection"></div>
+      <div class="section-head">
+        <div>
+          <p class="label">02 / Selected photographs</p>
+          <h2>From the garden.</h2>
+        </div>
+        <p class="label note" style="text-transform:none;letter-spacing:0;font-size:13px">A few things that caught my eye</p>
       </div>
+      <div class="featured-grid" id="featuredGrid"></div>
+      <div class="featured-foot">
+        <span>Plants, gardens, and the occasional detour.</span>
+        <a href="#work">Select a photograph for a closer look ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="label">03 / The portfolio</p>
+          <h2>A closer look.</h2>
+        </div>
+        <p class="label note" style="text-transform:none;letter-spacing:0;font-size:13px" id="portfolioCount"></p>
+      </div>
+      <p class="section-head note" style="margin:-20px 0 30px">Explore the full collection — woodland light, autumn colour, and the details in between.</p>
+      <div class="filters" id="filters" role="group" aria-label="Filter by collection"></div>
       <div class="grid" id="grid"></div>
     </div>
   </section>
 
-  <section class="about" id="about">
+  <section class="section about" id="about">
     <div class="wrap">
-      <h2 id="aboutTitle"></h2>
+      <div class="about-photo"><img id="aboutPhoto" src="" alt="" loading="lazy"></div>
       <div>
+        <p class="label">04 / Behind the photographs</p>
+        <h2 id="aboutTitle"></h2>
         <div id="aboutBody"></div>
-        <a class="ig" id="aboutIg" href="https://www.instagram.com/samjrodgers_" target="_blank" rel="me noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-            <rect x="2.5" y="2.5" width="19" height="19" rx="5"/>
-            <circle cx="12" cy="12" r="4.6"/>
-            <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/>
-          </svg>
-          <span class="handle" id="igHandle"></span>
-        </a>
+        <p class="signature">Sam Rodgers</p>
+        <hr class="about-rule">
+        <p class="gear" id="aboutGear"></p>
       </div>
     </div>
   </section>
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="wrap">
-    <span class="label">© <span id="year"></span> Sam Rodgers</span>
-    <a class="label" id="footIg" href="https://www.instagram.com/samjrodgers_" target="_blank" rel="me noopener">Instagram</a>
+    <div class="footer-top">
+      <div>
+        <p class="label">05 / Keep in touch</p>
+        <h2 id="footerTitle"></h2>
+      </div>
+      <div>
+        <p id="footerBody"></p>
+        <a class="ig" id="footIg" href="https://www.instagram.com/samjrodgers_" target="_blank" rel="me noopener">
+          <span class="handle" id="igHandle"></span><span class="arrow">↗</span>
+        </a>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <span class="label">© <span id="year"></span> Sam Rodgers · Plant &amp; garden photography</span>
+      <a class="label" href="#top">Back to the top ↑</a>
+    </div>
   </div>
 </footer>
 
@@ -239,7 +317,7 @@
   <button class="lb-close" id="lbClose" aria-label="Close">×</button>
   <img id="lbImg" src="" alt="">
   <div class="lb-bar">
-    <span id="lbCaption" class="label"></span>
+    <span id="lbCaption"><span class="sp"></span><span class="pl"></span></span>
     <span class="lb-nav">
       <button id="lbPrev" aria-label="Previous photograph">‹</button>
       <button id="lbNext" aria-label="Next photograph">›</button>
@@ -250,37 +328,34 @@
 <script>
 /* ===========================================================
    Content lives in content/photos.json and content/site.json,
-   edited via the CMS rather than here. The copies below are a
-   fallback only, used when fetch can't run (e.g. opened via
-   file:// instead of served over http).
+   edited directly on GitHub rather than here. The copies below
+   are a fallback only, used when fetch can't run (e.g. opened
+   via file:// instead of served over http).
    =========================================================== */
 const FALLBACK_PHOTOS = [
-  { file:"images/battleston-01.jpg", name:"Rhododendron 'Cynthia'",  place:"Battleston Hill", set:"Battleston Hill", ratio:"4/5" },
-  { file:"images/battleston-02.jpg", name:"Magnolia campbellii",     place:"Battleston Hill", set:"Battleston Hill", ratio:"2/3" },
-  { file:"images/battleston-03.jpg", name:"Acer palmatum",           place:"Battleston Hill", set:"Battleston Hill", ratio:"3/2" },
-  { file:"images/battleston-04.jpg", name:"Camellia japonica",       place:"Battleston Hill", set:"Battleston Hill", ratio:"4/5" },
-
-  { file:"images/woodland-01.jpg",   name:"Galanthus nivalis",       place:"Wisley",          set:"Woodland",        ratio:"3/2" },
-  { file:"images/woodland-02.jpg",   name:"Helleborus × hybridus",   place:"Wisley",          set:"Woodland",        ratio:"4/5" },
-  { file:"images/woodland-03.jpg",   name:"Anemone nemorosa",        place:"Wisley",          set:"Woodland",        ratio:"3/2" },
-  { file:"images/woodland-04.jpg",   name:"Dryopteris affinis",      place:"Wisley",          set:"Woodland",        ratio:"2/3" },
-
-  { file:"images/detail-01.jpg",     name:"Papaver somniferum",      place:"Trials field",    set:"Detail",          ratio:"4/5" },
-  { file:"images/detail-02.jpg",     name:"Allium cristophii",       place:"Mixed border",    set:"Detail",          ratio:"4/5" },
-  { file:"images/detail-03.jpg",     name:"Echeveria elegans",       place:"Glasshouse",      set:"Detail",          ratio:"3/2" },
-  { file:"images/detail-04.jpg",     name:"Nepenthes sp.",           place:"Glasshouse",      set:"Detail",          ratio:"2/3" },
+  { file:"images/woodland-01.jpg", name:"Fern", place:"RHS Wisley", set:"Woodland", ratio:"4/5" },
+  { file:"images/autumn-01.jpg",   name:"Acer palmatum", place:"RHS Wisley", set:"Autumn Colour", ratio:"2/3" },
+  { file:"images/detail-01.jpg",   name:"Dahlia", place:"Studio", set:"Detail", ratio:"2/3" },
 ];
 
 const FALLBACK_SITE = {
   headline: ["Light.", "Leaf.", "Season."],
-  heroNote: "A year of close looking in the gardens at RHS Wisley, where I work the beds on Battleston Hill.",
-  heroCorner: "A closer look",
+  heroEyebrow: "Plant & garden photography",
+  heroNote: "A collection of small discoveries — plants, changing light, and the things that make me stop and look.",
+  heroCta: "Explore the photographs",
   heroImage: "images/hero.jpg",
-  aboutTitle: "The art of noticing",
+  heroCaption: "Acer palmatum",
+  introLabel: "A way of looking",
+  introQuote: "There's usually something worth noticing. A leaf turning, a flower opening, light finding its way through.",
+  aboutTitle: ["A habit of", "looking closely."],
   aboutBody: [
-    "I'm a horticulturalist at RHS Wisley, responsible for Battleston Hill. The photographs come out of the same looking the job asks for — knowing when a flower is three days from its best, or when the low light finally reaches something that spends most of the day in shade.",
-    "Shot on a Sony a7CR with a 24–105mm. Plant names follow the collection records; corrections are always welcome."
+    "I'm Sam. I spend a lot of time looking closely at plants — how they change, what the light does to them, and the details that are easy to walk past.",
+    "These photographs come out of that habit. Most are made in gardens, with the occasional picture from further afield when something catches my eye.",
+    "I've included plant names where I can. If you spot one I've got wrong, I'd be glad to hear from you."
   ],
+  aboutGear: "Photographed with a Sony a7CR · 24–105mm",
+  footerTitle: ["More small", "discoveries."],
+  footerBody: "You'll find more photographs on Instagram. For a question about an image, a plant identification, or just to say hello, send me a message there.",
   instagram: "https://www.instagram.com/samjrodgers_"
 };
 
@@ -297,22 +372,43 @@ function render(PHOTOS, SITE) {
 
 const grid    = document.getElementById("grid");
 const filters = document.getElementById("filters");
-const tiles   = document.getElementById("tiles");
 const sets    = [...new Set(PHOTOS.map(p => p.set))];
 let visible = [];
 
 /* --- site copy --- */
-document.getElementById("eyebrow").textContent = sets.slice(0, 3).join(" / ");
+document.getElementById("heroEyebrow").textContent = SITE.heroEyebrow;
 document.getElementById("heroImg").src = SITE.heroImage;
+document.getElementById("heroCap").textContent = SITE.heroCaption || "";
 document.getElementById("headline").innerHTML = SITE.headline.map(line => `<span>${line}</span>`).join("");
 document.getElementById("heroNote").textContent = SITE.heroNote;
-document.getElementById("heroCorner").textContent = SITE.heroCorner;
-document.getElementById("aboutTitle").textContent = SITE.aboutTitle;
+document.getElementById("heroCta").textContent = SITE.heroCta;
+document.getElementById("introLabel").textContent = "01 / " + SITE.introLabel;
+document.getElementById("introQuote").textContent = SITE.introQuote;
+document.getElementById("aboutTitle").innerHTML = SITE.aboutTitle.map(line => `<span>${line}</span>`).join("");
 document.getElementById("aboutBody").innerHTML = SITE.aboutBody.map(p => `<p>${p}</p>`).join("");
+document.getElementById("aboutGear").textContent = SITE.aboutGear;
+document.getElementById("footerTitle").innerHTML = SITE.footerTitle.map(line => `<span>${line}</span>`).join("");
+document.getElementById("footerBody").textContent = SITE.footerBody;
+document.getElementById("portfolioCount").textContent = `${PHOTOS.length} photographs`;
+
+const aboutPick = PHOTOS.find(p => p.set === "Woodland") || PHOTOS[0];
+if (aboutPick) document.getElementById("aboutPhoto").src = aboutPick.file;
 
 const igHandle = "@" + SITE.instagram.replace(/\/$/, "").split("/").pop();
-["navIg", "aboutIg", "footIg"].forEach(id => document.getElementById(id).href = SITE.instagram);
+["navIg", "footIg"].forEach(id => document.getElementById(id).href = SITE.instagram);
 document.getElementById("igHandle").textContent = igHandle;
+
+/* --- featured strip: first photo of each of the first 3 collections --- */
+const featured = document.getElementById("featuredGrid");
+sets.slice(0, 3).forEach(s => {
+  const p = PHOTOS.find(ph => ph.set === s);
+  if (!p) return;
+  const fig = document.createElement("figure");
+  fig.innerHTML = `
+    <img src="${p.file}" alt="${p.name} photographed at ${p.place}" loading="lazy">
+    <figcaption><span class="sp">${p.name}</span><span class="pl">${p.place}</span></figcaption>`;
+  featured.appendChild(fig);
+});
 
 /* --- gallery --- */
 PHOTOS.forEach((p, i) => {
@@ -327,7 +423,7 @@ PHOTOS.forEach((p, i) => {
       <span class="ph-name">${p.file}</span>
       <span class="ph-hint">Add this file</span>
     </button>
-    <figcaption class="label"><span class="sp">${p.name}</span><span class="pl">${p.place}</span></figcaption>`;
+    <figcaption><span class="sp">${p.name}</span><span class="pl">${p.place}</span></figcaption>`;
   fig.querySelector("img").addEventListener("error", () => fig.classList.add("missing"));
   fig.querySelector("button").addEventListener("click", () => {
     if (!fig.classList.contains("missing")) open(i);
@@ -335,12 +431,13 @@ PHOTOS.forEach((p, i) => {
   grid.appendChild(fig);
 });
 
-/* --- filters --- */
+/* --- filters (with live counts) --- */
 ["All", ...sets].forEach((s, i) => {
+  const count = s === "All" ? PHOTOS.length : PHOTOS.filter(p => p.set === s).length;
   const b = document.createElement("button");
   b.className = "filter";
   b.type = "button";
-  b.textContent = s;
+  b.innerHTML = `${s}<span class="n">${count}</span>`;
   b.dataset.set = s;
   b.setAttribute("aria-pressed", i === 0 ? "true" : "false");
   b.addEventListener("click", () => applyFilter(s));
@@ -354,24 +451,6 @@ function applyFilter(set){
     f.classList.toggle("is-hidden", set !== "All" && f.dataset.set !== set));
   refreshVisible();
 }
-
-/* --- collection tiles --- */
-sets.forEach(s => {
-  const first = PHOTOS.find(p => p.set === s);
-  const n = PHOTOS.filter(p => p.set === s).length;
-  const b = document.createElement("button");
-  b.className = "tile";
-  b.type = "button";
-  b.innerHTML = `
-    <figure><img src="${first.file}" alt="" loading="lazy" onerror="this.style.display='none'"></figure>
-    <span class="label">${s}</span>
-    <span class="label count">${n} photograph${n === 1 ? "" : "s"}</span>`;
-  b.addEventListener("click", () => {
-    applyFilter(s);
-    document.getElementById("work").scrollIntoView({ behavior: "smooth" });
-  });
-  tiles.appendChild(b);
-});
 
 /* --- lightbox --- */
 const box   = document.getElementById("lightbox");
@@ -396,7 +475,7 @@ function show(){
   if (!p) return;
   lbImg.src = p.file;
   lbImg.alt = p.name + " photographed at " + p.place;
-  lbCap.innerHTML = `<span class="sp">${p.name}</span> &nbsp; ${p.place}`;
+  lbCap.innerHTML = `<span class="sp">${p.name}</span><span class="pl">${p.place}</span>`;
 }
 function step(n){ if (!visible.length) return; pos = (pos + n + visible.length) % visible.length; show(); }
 function close(){ box.classList.remove("is-open"); document.body.style.overflow = ""; lbImg.src = ""; }

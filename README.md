@@ -40,13 +40,18 @@ Don't worry about file size — a GitHub Action automatically shrinks anything o
 
 To remove a photo, delete its whole `{ ... }` line (and its comma if it was the last one). To reorder photos, cut and paste a whole line to a different position in the list — the site displays them in the order they appear here.
 
-## Changing the headline or About text
+## Changing the site's text
 
 1. Go to: **https://github.com/samjrodgers94-tech/samjrodgers94-tech.github.io/edit/main/content/site.json**
 2. Edit the text between the quote marks — don't touch the quote marks, colons, or commas themselves.
-   - `headline` — up to 3 short lines.
-   - `heroNote` — the line under the headline.
-   - `aboutTitle` / `aboutBody` — the About section heading and paragraphs.
+   - `headline` — up to 3 short lines (the second renders in italics).
+   - `heroEyebrow` / `heroNote` / `heroCta` — the small label, subheading, and button text at the top of the page.
+   - `heroCaption` — the plant name shown over the corner of the hero photo.
+   - `introLabel` / `introQuote` — the "A way of looking" line just below the hero.
+   - `aboutTitle` — two short lines for the dark About heading (the second renders in italics).
+   - `aboutBody` — the About paragraphs (add or remove lines freely).
+   - `aboutGear` — the camera/lens line under the About section.
+   - `footerTitle` / `footerBody` — the closing heading and paragraph.
    - `instagram` — your Instagram URL.
 3. Commit changes, then check the live site in a minute.
 

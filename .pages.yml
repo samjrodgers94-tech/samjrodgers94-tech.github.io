@@ -39,7 +39,7 @@ content:
         type: string
         required: true
         description: >-
-          Existing collections: Battleston Hill, Woodland, Detail.
+          Existing collections: Woodland, Autumn Colour, Detail.
           Type one of those exactly to add to it, or type a new name
           to start a new collection (it gets its own tile and filter
           button automatically).
@@ -64,12 +64,16 @@ content:
         list:
           max: 3
 
+      - name: heroEyebrow
+        label: Hero eyebrow label
+        type: string
+
       - name: heroNote
         label: Hero note
         type: text
 
-      - name: heroCorner
-        label: Hero corner label
+      - name: heroCta
+        label: Hero button text
         type: string
 
       - name: heroImage
@@ -77,14 +81,43 @@ content:
         type: string
         description: e.g. images/hero.jpg — the filename of the wide photo behind the headline.
 
-      - name: aboutTitle
-        label: About heading
+      - name: heroCaption
+        label: Hero image caption
         type: string
+        description: Plant name shown in the bottom-right corner of the hero photo.
+
+      - name: introLabel
+        label: Intro section label
+        type: string
+
+      - name: introQuote
+        label: Intro quote
+        type: text
+
+      - name: aboutTitle
+        label: About heading (2 short lines, 2nd shown in italic)
+        type: string
+        list:
+          max: 2
 
       - name: aboutBody
         label: About paragraphs
         type: text
         list: true
+
+      - name: aboutGear
+        label: Camera/lens line
+        type: string
+
+      - name: footerTitle
+        label: Footer heading (2 short lines, 2nd shown in italic)
+        type: string
+        list:
+          max: 2
+
+      - name: footerBody
+        label: Footer paragraph
+        type: text
 
       - name: instagram
         label: Instagram URL

@@ -1,12 +1,20 @@
 {
   "headline": ["Light.", "Leaf.", "Season."],
-  "heroNote": "Close looking at plants, and the odd photograph from further afield.",
-  "heroCorner": "A closer look",
+  "heroEyebrow": "Plant & garden photography",
+  "heroNote": "A collection of small discoveries — plants, changing light, and the things that make me stop and look.",
+  "heroCta": "Explore the photographs",
   "heroImage": "images/hero.jpg",
-  "aboutTitle": "The art of noticing",
+  "heroCaption": "Acer palmatum",
+  "introLabel": "A way of looking",
+  "introQuote": "There's usually something worth noticing. A leaf turning, a flower opening, light finding its way through.",
+  "aboutTitle": ["A habit of", "looking closely."],
   "aboutBody": [
-    "I spend a lot of time looking closely at plants — noticing when a flower is a few days from its best, or when the light finally reaches somewhere it usually doesn't. Most of what's here comes out of that habit, plus the odd photograph from travelling.",
-    "Shot on a Sony a7CR with a 24–105mm. Names are my best guess where I'm not certain of the exact species — corrections are always welcome."
+    "I'm Sam. I spend a lot of time looking closely at plants — how they change, what the light does to them, and the details that are easy to walk past.",
+    "These photographs come out of that habit. Most are made in gardens, with the occasional picture from further afield when something catches my eye.",
+    "I've included plant names where I can. If you spot one I've got wrong, I'd be glad to hear from you."
   ],
+  "aboutGear": "Photographed with a Sony a7CR · 24–105mm",
+  "footerTitle": ["More small", "discoveries."],
+  "footerBody": "You'll find more photographs on Instagram. For a question about an image, a plant identification, or just to say hello, send me a message there.",
   "instagram": "https://www.instagram.com/samjrodgers_"
 }
